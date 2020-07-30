@@ -1,0 +1,5 @@
+.headerSeparator {
+    border-bottom: lightgrey;
+    border-bottom-width: 2px;
+    border-bottom-style: dotted;
+}
