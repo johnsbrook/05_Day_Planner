@@ -77,7 +77,7 @@ var plannerFormEL = $('.plannerForm');
     for (var tPM = 12; tPM < 21; tPM++) {
    
             //Appends labels and input from 1:00PM to 11:00PM
-            plannerFormEL.append('<label class="timeLabel col-2 col-md-1 mr-4 mr-md-5 mt-2" id="timeLabel' + [tPM] + '">' + [tPM] + ":00PM" + '</label>');
+            plannerFormEL.append('<label class="timeLabel col-2 col-md-1 mr-4 mr-md-5 mt-2" id="timeLabel' + [tPM] + '">' + ([tPM] - 11) + ":00PM" + '</label>');
             plannerFormEL.append('<input class="taskInput col-8 col-md-9" id="input' + [tPM] + '">' + '</input>');
             plannerFormEL.append('<i style="font-size: 1.25em;" class="far fa-calendar-check col-1" id="i' + [tPM] + '">' + '</i>' + '<br>');
             pmTime.push(tPM)
