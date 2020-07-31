@@ -1,18 +1,21 @@
 $("body").attr("style", "background-color: white;");
+$("body").append('<div class="headerContent header py-3 shadow-sm" style="background-color: lightblue">' + '</div>');
+
 
 var topEl = $('.headerContent');
-    topEl.append('<div class="topRow row">' + '</div>');
+    topEl.append('<div class="topRow row mx-auto">' + '</div>');
 
 var topRowEl = $('.topRow');
-    topRowEl.append('<div class="topCol1 col-12 col-md-6 text-center" id="dateDiv">' + '</div>');
-    topRowEl.append('<div class="topCol2 col-12 col-md-6 text-center pt-3 pt-md-0">' + '</div>');
+    topRowEl.append('<div class="topCol1 col-12 col-md-4 ml-auto text-center" id="dateDiv" style="font-size: 1.5em;">' + '</div>');
+    topRowEl.append('<div class="topCol2 col-12 col-md-1 mr-md-auto my-auto pt-3 pt-md-0 text-center">' + '</div>');
 
 var topCol1 = $('.topCol1');    
-    topCol1.append('<h2>Work Daily Schedule</h2>');
+    topCol1.append('<h2 class="display-4">Work Daily Schedule</h2>');
     topCol1.append('<h5>Everyday is a beautiful day!</h5>');
 
+
 var topCol2 = $('.topCol2');  
-    topCol2.append('<a target="_blank" href="https://www.booked.net/weather/new-york-18103"><img src="https://w.bookcdn.com/weather/picture/25_18103_1_1_3498db_250_2980b9_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=9699"  alt="booked.net"/></a>');
+    topCol2.append('<a target="_blank" href="https://www.booked.net/weather/new-york-18103"><img src="https://w.bookcdn.com/weather/picture/25_18103_1_1_3498db_250_2980b9_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=9699" style="border-radius: 10px; box-shadow: 0 0 5px gray;" alt="booked.net"/></a>');
 
 
 var todayDate = new Date(),
@@ -52,17 +55,14 @@ var mainframeEl = $('.mainFrame');
             mainframeEl.append('<i class="far fa-calendar-check col-1" style="font-size: 1.25em;">' + '</i>' + '<br>');
 
         var taskInput = $('.taskInput');
-        
+      
 
             if (tAM < curHour) {
                 taskInput.attr('style', 'color: black; background-color: red;');
-            } 
-
-            if (tAM == curHour) {
-                taskInput.attr('style', 'color: black; background-color: green;');
             }
 
             console.log("Current Hour: " + curHour);
+            console.log("Time Options are: " + tAM);
 
     }
 
@@ -77,10 +77,13 @@ var mainframeEl = $('.mainFrame');
 
         var taskInput = $('.taskInput');
             
-            if(tPM < curHour) {
+            if (tPM < curHour) {
                 taskInput.attr('style', 'color: black; background-color: red;');
             }
             
+            console.log("Current Hour: " + curHour);
+            console.log("Time Options are: " + tPM);
+
     }
     console.log(pmTime.join());
     console.log(curHour);
