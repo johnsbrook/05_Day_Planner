@@ -44,21 +44,28 @@ var midRow = $('.midRow')
     midRow.append('<div class="col-12 mainFrame">' + '</div>');
 
 var mainframeEl = $('.mainFrame');
-    
+    mainframeEl.append('<form class="plannerForm">' + '</form>');
+
+var plannerFormEL = $('.plannerForm');
 
     // Appending lables from 6:00AM to 12:00AM
     for (var tAM = 0; tAM < 12; tAM++) {
     
             //Appends labels and input from 1:00AM to 11:00AM
-            mainframeEl.append('<label class="timeLabel col-2 col-md-1 mr-4 mr-md-5 mt-2">' + [tAM] + ":00AM" + '</label>');
-            mainframeEl.append('<input class="taskInput col-8 col-md-9">' + '</input>');
-            mainframeEl.append('<i class="far fa-calendar-check col-1" style="font-size: 1.25em;">' + '</i>' + '<br>');
+            
+            plannerFormEL.append('<label class="timeLabel col-2 col-md-1 mr-4 mr-md-5 mt-2" id="timeLabel' + [tAM] + '">' + [tAM] + ":00AM" + '</label>');
+            plannerFormEL.append('<input class="taskInput col-8 col-md-9" id="input' + [tAM] + '">' + '</input>');
+            
+            // for (var dt = 0; dt < 12; dt++) {
+            //     $('.taskInput').attr('data-number', [dt]);
+            //     console.log(dt);
+            // }
+            
+            plannerFormEL.append('<i style="font-size: 1.25em;" class="far fa-calendar-check col-1" id="i' + [tAM] + '">' + '</i>' + '<br>');
 
-        var taskInput = $('.taskInput');
-      
-
+        var taskInput = $('.taskInput'); 
             if (tAM < curHour) {
-                taskInput.attr('style', 'color: black; background-color: red;');
+                taskInput.attr('style', 'color: black; background-color: lightpink;');
             }
 
             console.log("Current Hour: " + curHour);
@@ -70,9 +77,9 @@ var mainframeEl = $('.mainFrame');
     for (var tPM = 12; tPM < 21; tPM++) {
    
             //Appends labels and input from 1:00PM to 11:00PM
-            mainframeEl.append('<label class="timeLabel col-2 col-md-1 mr-4 mr-md-5 mt-2">' + [tPM] + ":00PM" + '</label>');
-            mainframeEl.append('<input class="taskInput col-8 col-md-9">' + '</input>');
-            mainframeEl.append('<i class="far fa-calendar-check col-1" style="font-size: 1.25em;">' + '</i>' + '<br>');
+            plannerFormEL.append('<label class="timeLabel col-2 col-md-1 mr-4 mr-md-5 mt-2" id="timeLabel' + [tPM] + '">' + [tPM] + ":00PM" + '</label>');
+            plannerFormEL.append('<input class="taskInput col-8 col-md-9" id="input' + [tPM] + '">' + '</input>');
+            plannerFormEL.append('<i style="font-size: 1.25em;" class="far fa-calendar-check col-1" id="i' + [tPM] + '">' + '</i>' + '<br>');
             pmTime.push(tPM)
 
         var taskInput = $('.taskInput');
