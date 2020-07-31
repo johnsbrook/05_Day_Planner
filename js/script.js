@@ -35,8 +35,9 @@ var bodyEl = $('body');
     bodyEl.append('<div class="containerMain">' + '</div>');
 
 var container = $('.containerMain')
-    container.append('<div class="row">' + '</div>');
-    container.append('<div class="col-12 mainFrame">' + '</div>');
+    container.append('<div class="row midRow">' + '</div>');
+var midRow = $('.midRow') 
+    midRow.append('<div class="col-12 mainFrame">' + '</div>');
 
 // Appending 12:00AM label and input
 var mainframeEl = $('.mainFrame');
@@ -44,10 +45,10 @@ var mainframeEl = $('.mainFrame');
 
 
     // 12:00 AM label  
-    mainframeEl.append('<label class="col-3 text-center">' + '12:00 AM' + '</label>');
+    mainframeEl.append('<label class="col-2 mr-4 mt-2">' + '12:00AM' + '</label>');
     // Input for tasks   
     mainframeEl.append('<input class="col-8">' + '</input>');
-    mainframeEl.append('<i class="far fa-calendar-check"></i>' + '<br>')
+    mainframeEl.append('<i class="far fa-calendar-check col-1"></i>' + '<br>')
 
 // Appending lables from 1:00AM to 11:00AM
 for (var tAM = 1; tAM < 12; tAM++) {
@@ -55,8 +56,9 @@ for (var tAM = 1; tAM < 12; tAM++) {
     // mainframeEl.append('<label class="labelPlaner mt-5 mb-4" style="background-color:lavender; width:12%; padding:33px; text-align:center;  border-top-left-radius: 25px; border-bottom-left-radius: 25px;">' + '12:00 AM' + '</label>');
    
     
-mainframeEl.append('<label class="mr-2">' + [tAM] + ":00 AM" + '</label>');
-mainframeEl.append('<input>' + '</input>' + '<i class="far fa-calendar-check ml-3">' + '</i>' + '<br>');
+    mainframeEl.append('<label class="col-2 mr-4">' + [tAM] + ":00AM" + '</label>');
+    mainframeEl.append('<input class="col-8">' + '</input>');
+    mainframeEl.append('<i class="far fa-calendar-check col-1">' + '</i>' + '<br>');
 }
     
 
