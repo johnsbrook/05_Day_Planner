@@ -1,4 +1,4 @@
-$("body").attr("style", "background-color: lightgray;");
+$("body").attr("style", "background-color: white;");
 
 var topEl = $('.headerContent');
     topEl.append('<div class="topRow row">' + '</div>');
@@ -32,33 +32,34 @@ $('#dateDiv').append(today);
 var bodyEl = $('body');
 
 // Appending Container
-    bodyEl.append('<div class="container" style="background-color: lightgray;">' + '</div>');
+    bodyEl.append('<div class="containerMain">' + '</div>');
+
+var container = $('.containerMain')
+    container.append('<div class="row">' + '</div>');
+    container.append('<div class="col-12 mainFrame">' + '</div>');
 
 // Appending 12:00AM label and input
-var containerEl = $('.container');
+var mainframeEl = $('.mainFrame');
     
+
+
     // 12:00 AM label  
-    containerEl.append('<label class="labelPlaner py-2 pl-2 mt-5" style="width: 15%; background-color: lavender; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">' + '12:00 AM' + '</label>');
+    mainframeEl.append('<label class="col-3 text-center">' + '12:00 AM' + '</label>');
     // Input for tasks   
-    containerEl.append('<input class="plannerLine" style="width: 70%; height: 50px">' + '</input>' + '<i class="far fa-calendar-check ml-3" style="font-size: 1.5em;"></i>' + '<br>');
+    mainframeEl.append('<input class="col-8">' + '</input>');
+    mainframeEl.append('<i class="far fa-calendar-check"></i>' + '<br>')
 
 // Appending lables from 1:00AM to 11:00AM
 for (var tAM = 1; tAM < 12; tAM++) {
 
-    // containerEl.append('<label class="labelPlaner mt-5 mb-4" style="background-color:lavender; width:12%; padding:33px; text-align:center;  border-top-left-radius: 25px; border-bottom-left-radius: 25px;">' + '12:00 AM' + '</label>');
-    containerEl.append('<label class="labelPlaner py-2 pl-2 mt-3" style="width: 15%;background-color: lavender; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">' + [tAM] + ":00 AM" + '</label>');
-
-    containerEl.append('<input class="plannerLineAM">' + '</input>' + '<i class="far fa-calendar-check ml-3" style="font-size:1.5em;"></i>' + '<br>');
-
-var plannerLineAM = $('.plannerLineAM');
-    plannerLineAM.attr("class", "plannerLine"); 
-    plannerLineAM.attr("style", "width: 70%; height: 50px");  
-    plannerLineAM.attr("id" + [tAM][0]);
+    // mainframeEl.append('<label class="labelPlaner mt-5 mb-4" style="background-color:lavender; width:12%; padding:33px; text-align:center;  border-top-left-radius: 25px; border-bottom-left-radius: 25px;">' + '12:00 AM' + '</label>');
+   
+    
+mainframeEl.append('<label class="mr-2">' + [tAM] + ":00 AM" + '</label>');
+mainframeEl.append('<input>' + '</input>' + '<i class="far fa-calendar-check ml-3">' + '</i>' + '<br>');
 }
     
-var plannerLine = $('.plannerLine');
-    plannerLine.append();
-    plannerLine.attr("class","plannerInput")
+
 
 
 
