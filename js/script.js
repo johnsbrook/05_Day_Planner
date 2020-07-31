@@ -44,37 +44,43 @@ var mainframeEl = $('.mainFrame');
     
 
     // Appending lables from 6:00AM to 12:00AM
-    for (var tAM = 1; tAM < 12; tAM++) {
+    for (var tAM = 0; tAM < 12; tAM++) {
     
             //Appends labels and input from 1:00AM to 11:00AM
-            mainframeEl.append('<label class="timeLabel col-2 col-md-1 mr-4 mt-2">' + [tAM] + ":00AM" + '</label>');
-            mainframeEl.append('<input class="col-8 col-md-9">' + '</input>');
+            mainframeEl.append('<label class="timeLabel col-2 col-md-1 mr-4 mr-md-5 mt-2">' + [tAM] + ":00AM" + '</label>');
+            mainframeEl.append('<input class="taskInput col-8 col-md-9">' + '</input>');
             mainframeEl.append('<i class="far fa-calendar-check col-1" style="font-size: 1.25em;">' + '</i>' + '<br>');
 
-        var timeLabel = $('.timeLabel');
+        var taskInput = $('.taskInput');
+        
+
             if (tAM < curHour) {
-                timeLabel.attr('style', 'color: red; font-weight: bold;');
+                taskInput.attr('style', 'color: black; background-color: red;');
             } 
 
-            if (tAM = curHour) {
-                timeLabel.attr('style', 'color: yellow; font-weight: bold;');
+            if (tAM == curHour) {
+                taskInput.attr('style', 'color: black; background-color: green;');
             }
+
+            console.log("Current Hour: " + curHour);
 
     }
 
     var pmTime = []
     for (var tPM = 12; tPM < 21; tPM++) {
    
-        //Appends labels and input from 1:00PM to 11:00PM
-        mainframeEl.append('<label class="timeLabel col-2 col-md-1 mr-4 mt-2">' + [tPM] + ":00PM" + '</label>');
-        mainframeEl.append('<input class="col-8 col-md-9">' + '</input>');
-        mainframeEl.append('<i class="far fa-calendar-check col-1" style="font-size: 1.25em;">' + '</i>' + '<br>');
-        pmTime.push(tPM)
+            //Appends labels and input from 1:00PM to 11:00PM
+            mainframeEl.append('<label class="timeLabel col-2 col-md-1 mr-4 mr-md-5 mt-2">' + [tPM] + ":00PM" + '</label>');
+            mainframeEl.append('<input class="taskInput col-8 col-md-9">' + '</input>');
+            mainframeEl.append('<i class="far fa-calendar-check col-1" style="font-size: 1.25em;">' + '</i>' + '<br>');
+            pmTime.push(tPM)
 
-        if(tPM < curHour) {
-            $('.timeLabel').attr('style', 'color: red; font-weight: bold;');
-        }
-        
+        var taskInput = $('.taskInput');
+            
+            if(tPM < curHour) {
+                taskInput.attr('style', 'color: black; background-color: red;');
+            }
+            
     }
     console.log(pmTime.join());
     console.log(curHour);
