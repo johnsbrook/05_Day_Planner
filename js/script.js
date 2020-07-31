@@ -23,6 +23,7 @@ var todayDate = new Date(),
     curMonth = months[todayDate.getMonth()];
     curYear = todayDate.getFullYear();
     dayOfMonth = todayDate.getDate();
+    curHour = todayDate.getHours();
     
 var today = "Today's date: " + dayOfWeek + ", " + curMonth + " " + dayOfMonth + ", " + curYear;
 $('#dateDiv').append(today);
@@ -41,33 +42,45 @@ var midRow = $('.midRow')
 
 var mainframeEl = $('.mainFrame');
     
-    // Appends 12:00 AM label and input with checkmark icon 
-    mainframeEl.append('<label class="col-2 col-md-1 mr-4 mt-4">' + '12:00AM' + '</label>');
-    mainframeEl.append('<input class="col-8 col-md-9">' + '</input>');
-    mainframeEl.append('<i class="far fa-calendar-check col-1" style="font-size: 1.25em;"></i>' + '<br>');
 
-// Appending lables from 1:00AM to 11:00AM
-for (var tAM = 1; tAM < 12; tAM++) {
-   
-    //Appends labels and input from 1:00AM to 11:00AM
-    mainframeEl.append('<label class="col-2 col-md-1 mr-4 mt-2">' + [tAM] + ":00AM" + '</label>');
-    mainframeEl.append('<input class="col-8 col-md-9">' + '</input>');
-    mainframeEl.append('<i class="far fa-calendar-check col-1" style="font-size: 1.25em;">' + '</i>' + '<br>');
-}
-
-    // 12:00 AM label  
-    mainframeEl.append('<label class="col-2 col-md-1 mr-4 mt-2">' + '12:00PM' + '</label>');
-    // Input for tasks   
-    mainframeEl.append('<input class="col-8 col-md-9">' + '</input>');
-    mainframeEl.append('<i class="far fa-calendar-check col-1"></i>' + '<br>');
-
+    // Appending lables from 6:00AM to 12:00AM
     for (var tAM = 1; tAM < 12; tAM++) {
+    
+            //Appends labels and input from 1:00AM to 11:00AM
+            mainframeEl.append('<label class="timeLabel col-2 col-md-1 mr-4 mt-2">' + [tAM] + ":00AM" + '</label>');
+            mainframeEl.append('<input class="col-8 col-md-9">' + '</input>');
+            mainframeEl.append('<i class="far fa-calendar-check col-1" style="font-size: 1.25em;">' + '</i>' + '<br>');
+
+        var timeLabel = $('.timeLabel');
+            if (tAM < curHour) {
+                timeLabel.attr('style', 'color: red; font-weight: bold;');
+            } 
+
+            if (tAM = curHour) {
+                timeLabel.attr('style', 'color: yellow; font-weight: bold;');
+            }
+
+    }
+
+    var pmTime = []
+    for (var tPM = 12; tPM < 21; tPM++) {
    
         //Appends labels and input from 1:00PM to 11:00PM
-        mainframeEl.append('<label class="col-2 col-md-1 mr-4 mt-2">' + [tAM] + ":00PM" + '</label>');
+        mainframeEl.append('<label class="timeLabel col-2 col-md-1 mr-4 mt-2">' + [tPM] + ":00PM" + '</label>');
         mainframeEl.append('<input class="col-8 col-md-9">' + '</input>');
         mainframeEl.append('<i class="far fa-calendar-check col-1" style="font-size: 1.25em;">' + '</i>' + '<br>');
+        pmTime.push(tPM)
+
+        if(tPM < curHour) {
+            $('.timeLabel').attr('style', 'color: red; font-weight: bold;');
+        }
+        
     }
+    console.log(pmTime.join());
+    console.log(curHour);
+
+    
+
 
 
 
