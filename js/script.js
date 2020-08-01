@@ -39,6 +39,9 @@ var bodyEl = $('body');
     bodyEl.append('<div class="container">' + '</div>');
 
 var container = $('.container')
+    
+
+// Apending top row of time
     container.append('<div class="row midRow">' + '</div>');
 var midRow = $('.midRow') 
     midRow.append('<div class="col-12 mainFrame">' + '</div>');
@@ -47,55 +50,86 @@ var mainframeEl = $('.mainFrame');
     mainframeEl.append('<form class="plannerForm">' + '</form>');
 
 var plannerFormEL = $('.plannerForm');
+var labelStyle = ' col-2 col-md-1 mr-4 mr-md-5 mt-2" ';
+var inputStyle = ' col-8 col-md-9"';
+var inputStylePassed = "'color: black; background-color: #ffb6c1;'";
+var iconStyle = '  style="font-size: 1.25em;" class="far fa-calendar-check col-1" id="i';
 
     // Appending lables from 6:00AM to 12:00AM
-    for (var tAM = 0; tAM < 12; tAM++) {
+    timeArray = [];
+
+    for (var tAM = 0; tAM < 13; tAM++) {
     
             //Appends labels and input from 1:00AM to 11:00AM
             
-            plannerFormEL.append('<label class="timeLabel col-2 col-md-1 mr-4 mr-md-5 mt-2" id="timeLabel' + [tAM] + '">' + [tAM] + ":00AM" + '</label>');
-            plannerFormEL.append('<input class="taskInput col-8 col-md-9" id="input' + [tAM] + '">' + '</input>');
-            
-            // for (var dt = 0; dt < 12; dt++) {
-            //     $('.taskInput').attr('data-number', [dt]);
-            //     console.log(dt);
-            // }
-            
-            plannerFormEL.append('<i style="font-size: 1.25em;" class="far fa-calendar-check col-1" id="i' + [tAM] + '">' + '</i>' + '<br>');
-
-        var taskInput = $('.taskInput'); 
-            if (tAM < curHour) {
-                taskInput.attr('style', 'color: black; background-color: lightpink;');
-            }
-
-            console.log("Current Hour: " + curHour);
-            console.log("Time Options are: " + tAM);
-
-    }
-
-    var pmTime = []
-    for (var tPM = 12; tPM < 21; tPM++) {
+            plannerFormEL.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + '[' + tAM + ']' + '">' + [tAM] + ":00" + '</label>');
+            plannerFormEL.append('<input class="taskInput' + inputStyle + 'id="' + [tAM] + '"' + '>' + '</input>');            
+            plannerFormEL.append('<i' + iconStyle + [tAM] + '">' + '</i>' + '<br>');
+            timeArray.push(tAM);
    
-            //Appends labels and input from 1:00PM to 11:00PM
-            plannerFormEL.append('<label class="timeLabel col-2 col-md-1 mr-4 mr-md-5 mt-2" id="timeLabel' + [tPM] + '">' + ([tPM] - 11) + ":00PM" + '</label>');
-            plannerFormEL.append('<input class="taskInput col-8 col-md-9" id="input' + [tPM] + '">' + '</input>');
-            plannerFormEL.append('<i style="font-size: 1.25em;" class="far fa-calendar-check col-1" id="i' + [tPM] + '">' + '</i>' + '<br>');
-            pmTime.push(tPM)
+    }
 
-        var taskInput = $('.taskInput');
-            
-            if (tPM < curHour) {
-                taskInput.attr('style', 'color: black; background-color: red;');
-            }
-            
-            console.log("Current Hour: " + curHour);
-            console.log("Time Options are: " + tPM);
+
+    container.append('<div class="row midRowPM">' + '</div>');
+var midRowPM = $('.midRowPM') 
+    midRowPM.append('<div class="col-12 mainFramePM">' + '</div>');
+
+var mainFramePMEl = $('.mainFramePM');
+    mainFramePMEl.append('<form class="plannerFormPM">' + '</form>');
+
+var plannerFormPMEL = $('.plannerFormPM');
+var labelStylePM = ' col-2 col-md-1 mr-4 mr-md-5 mt-2" ';
+var inputStylePM = ' col-8 col-md-9"';
+var inputStylePassedPM = "'color: black; background-color: #ffb6c1;'";
+var iconStylePM = '  style="font-size: 1.25em;" class="far fa-calendar-check col-1" id="i';
+
+
+    for (var tPM = 13; tPM < 22; tPM++) {
+
+            //Appends labels and input from 1:00AM to 11:00AM
+            timePM = ([tPM] - 12);
+            plannerFormPMEL.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + '[' + tPM + ']' + '">' + [timePM] + ":00" + '</label>');
+            plannerFormPMEL.append('<input class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + '>' + '</input>');            
+            plannerFormPMEL.append('<i' + iconStyle + [tPM] + '">' + '</i>' + '<br>');
+            timeArray.push(tPM);
 
     }
-    console.log(pmTime.join());
-    console.log(curHour);
 
-    
+
+    for (i = 0; i < 24; i++) {
+        if (timeArray[i] == (curHour) ) {
+            document.getElementById(i).setAttribute('style', 'background-color: powderblue;');
+        }
+        if (timeArray[i] < curHour ) {
+            document.getElementById(i).setAttribute('style', 'background-color: rgb(250, 211, 217);');
+        }
+        if (timeArray[i] > curHour ) {
+            document.getElementById(i).setAttribute('style', 'background-color: lightyellow;');
+        }
+    }
+
+
+      
+            document.getElementById('timeLabel[0]').setAttribute('style', 'display: none;');
+            document.getElementById('timeLabel[1]').setAttribute('style', 'display: none;');
+            document.getElementById('timeLabel[2]').setAttribute('style', 'display: none;');
+            document.getElementById('timeLabel[3]').setAttribute('style', 'display: none;');
+            document.getElementById('timeLabel[4]').setAttribute('style', 'display: none;');
+            document.getElementById('timeLabel[5]').setAttribute('style', 'display: none;');
+
+            document.getElementById(0).setAttribute('style', 'display: none;');
+            document.getElementById(1).setAttribute('style', 'display: none;');
+            document.getElementById(2).setAttribute('style', 'display: none;');
+            document.getElementById(3).setAttribute('style', 'display: none;');
+            document.getElementById(4).setAttribute('style', 'display: none;');
+            document.getElementById(5).setAttribute('style', 'display: none;');
+
+            document.getElementById('i0').setAttribute('style', 'display: none;');
+            document.getElementById('i1').setAttribute('style', 'display: none;');
+            document.getElementById('i2').setAttribute('style', 'display: none;');
+            document.getElementById('i3').setAttribute('style', 'display: none;');
+            document.getElementById('i4').setAttribute('style', 'display: none;');
+            document.getElementById('i5').setAttribute('style', 'display: none;');
 
 
 
