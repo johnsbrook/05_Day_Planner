@@ -74,66 +74,55 @@ var iconStyle = '  style="font-size: 1.25em;" class="far fa-calendar-check col-1
 // Created array that will contain values of times through the planner's structure
 var timeArray = [];
 
-// Created loop for hours from midnight to noon
+// Created loop for morning time (tAM)
 for (var tAM = 0; tAM < 13; tAM++) {
 
-  //Appends labels and input from
-  plannerFormElAM.append(
-    '<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tAM + "]" + '">' + [tAM] + ":00" + "</label>");
-  plannerFormElAM.append(
-    '<input class="taskInput' + inputStyle + 'id="' + [tAM] + '"' + ">" + "</input>");
+  //Appended morning time label, input and icons into form
+  plannerFormElAM.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tAM + "]" + '">' + [tAM] + ":00" + "</label>");
+  plannerFormElAM.append('<input class="taskInput' + inputStyle + 'id="' + [tAM] + '"' + ">" + "</input>");
   plannerFormElAM.append("<i" + iconStyle + [tAM] + '">' + "</i>");
   timeArray.push(tAM);
 }
 
-container.append('<div class="row midRowPM">' + "</div>");
+
+// Created variable for HTML section element that will have form with PM times
+    container.append('<div class="row midRowPM">' + "</div>");
+
+// Created variable for HTML section element that will have form with PM times
 var midRowPM = $(".midRowPM");
-midRowPM.append('<div class="col-12 mainFramePM">' + "</div>");
+    midRowPM.append('<div class="col-12 mainFramePM">' + "</div>");
 
+// Created var with mainFramePM class for form to frame label, input and icon ('<i>') tags and append them 
 var mainFramePMEl = $(".mainFramePM");
-mainFramePMEl.append('<form class="plannerFormPM">' + "</form>");
+    mainFramePMEl.append('<form class="plannerFormPM">' + "</form>");
 
+// Created var with panner form's structure for PM times  
 var plannerFormPMEL = $(".plannerFormPM");
-var labelStylePM = ' col-2 col-md-1 mr-4 mr-md-5 mt-2" ';
-var inputStylePM = ' col-8 col-md-9"';
-var inputStylePassedPM = "'color: black; background-color: #ffb6c1;'";
-var iconStylePM =
-  '  style="font-size: 1.25em;" class="far fa-calendar-check col-1" id="i';
-
-
-
-  
+ 
+// Created loop for afternoon and evening time (tPM)
 for (var tPM = 13; tPM < 22; tPM++) {
 
-  //Appends labels and input from 1:00AM to 11:00AM
+  //Appended morning time label, input and icons into form
   timePM = [tPM] - 12;
   plannerFormPMEL.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tPM + "]" + '">' + [timePM] + ":00" + "</label>");
-  plannerFormPMEL.append('<input class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + ">" + "</input>");
+  plannerFormPMEL.append('<input class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + ' style="height: 100">' + "</input>");
   plannerFormPMEL.append("<i" + iconStyle + [tPM] + '">' + "</i>" + "<br>");
   timeArray.push(tPM);
 }
 
 // Establishing for loop through the app to grab i values and iterate them into the changes below
 for (i = 0; i < 24; i++) {
-    // Established background color to be changed if time is equal to the current hour
-  if (timeArray[i] == curHour) {
-    document
-      .getElementById(i)
-      .setAttribute("style", "background-color: powderblue;");
+    
+    // Changed background color to be changed if time is equal to the current hour
+  if (timeArray[i] == curHour) {document.getElementById(i).setAttribute("style", "background-color: powderblue;");
   }
 
   // Established background color of labels if time is less than the current hour
-  if (timeArray[i] < curHour) {
-    document
-      .getElementById(i)
-      .setAttribute("style", "background-color: rgb(250, 211, 217);");
+  if (timeArray[i] < curHour) {document.getElementById(i).setAttribute("style", "background-color: rgb(250, 211, 217);");
   }
 
   // Established background color of lables if times is more than the current hour
-  if (timeArray[i] > curHour) {
-    document
-      .getElementById(i)
-      .setAttribute("style", "background-color: lightyellow;");
+  if (timeArray[i] > curHour) {document.getElementById(i).setAttribute("style", "background-color: lightyellow;");
   }
 }
 
