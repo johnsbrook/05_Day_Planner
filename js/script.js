@@ -97,7 +97,7 @@ for (var tAM = 0; tAM < 12; tAM++) {
 
 // 
 // for (var noon = 12; noon < 13; noon++) {
-  plannerFormElAM.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + 12 + "]" + '">' + [12] + ":00PM" + "</label>");
+  plannerFormElAM.append('<label for="text" class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + 12 + "]" + '">' + [12] + ":00PM" + "</label>");
   plannerFormElAM.append('<input type="text" placeholder="task" class="taskInput' + inputStyle + 'id="' + [12] + '"' + ">" + "</input>");
   plannerFormElAM.append('<button' + iconStyle + [12] + '">' + "</button>");
   timeArray.push(12);
@@ -123,7 +123,7 @@ for (var tPM = 13; tPM < 22; tPM++) {
 
   //Appended morning time label, input and icons into form
   timePM = [tPM] - 12;
-  plannerFormPMEL.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tPM + "]" + '">' + [timePM] + ":00PM" + "</label>");
+  plannerFormPMEL.append('<label for="text" class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tPM + "]" + '">' + [timePM] + ":00PM" + "</label>");
   plannerFormPMEL.append('<input type="text" placeholder="task" class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + ' style="border:0;">' + "</input>");
   plannerFormPMEL.append('<button' + iconStyle + [tPM] + '">' + "</button>");
   plannerFormPMEL.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
@@ -195,8 +195,9 @@ document.getElementById("hr4").remove("<hr>");
 // *       LOCAL STORAGE SECTION       *
 // *************************************
 
-var task1Input = document.querySelector('#\\6').str;
+var task1Input = document.querySelector('#\\6');
 var saveTaskBtn = document.querySelector('#i6');
+console.log(typeof task1Input);
 
 saveTaskBtn.addEventListener("click", function(event) {
     event.preventDefault();
@@ -205,10 +206,10 @@ saveTaskBtn.addEventListener("click", function(event) {
     var task = {
         taskText: task1Input,
     }
-      localStorage.setItem("task", JSON.stringify(task));
+      localStorage.setItem("task", task);
       
       // get most recent submission
       var lastUser = localStorage.getItem("task");
-      task1Input.textContent = lastUser.taskText;
+      task1Input = lastUser.taskText;
       
 });
