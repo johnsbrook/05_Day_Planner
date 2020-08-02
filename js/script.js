@@ -84,7 +84,7 @@ for (var tAM = 0; tAM < 13; tAM++) {
 
   //Appended morning time label, input and icons into form
   plannerFormElAM.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tAM + "]" + '">' + [tAM] + ":00" + "</label>");
-  plannerFormElAM.append('<textarea class="taskInput' + inputStyle + 'id="' + [tAM] + '"' + ">" + "</textarea>");
+  plannerFormElAM.append('<input class="taskInput' + inputStyle + 'id="' + [tAM] + '"' + ">" + "</input>");
   plannerFormElAM.append('<button' + iconStyle + [tAM] + '">' + "</button>");
   timeArray.push(tAM);
   plannerFormElAM.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
@@ -111,7 +111,7 @@ for (var tPM = 13; tPM < 22; tPM++) {
   //Appended morning time label, input and icons into form
   timePM = [tPM] - 12;
   plannerFormPMEL.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tPM + "]" + '">' + [timePM] + ":00" + "</label>");
-  plannerFormPMEL.append('<textarea class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + ' style="border:0;">' + "</textarea>");
+  plannerFormPMEL.append('<input class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + ' style="border:0;">' + "</input>");
   plannerFormPMEL.append('<button' + iconStyle + [tPM] + '">' + "</button>");
   plannerFormPMEL.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
   timeArray.push(tPM);
@@ -144,12 +144,12 @@ document.getElementById("timeLabel[4]").remove("<label>");
 document.getElementById("timeLabel[5]").remove("<label>");
 
 // Removed input tags from midnight to 5AM 
-document.getElementById(0).remove("<input>");
-document.getElementById(1).remove("<input>");
-document.getElementById(2).remove("<input>");
-document.getElementById(3).remove("<input>");
-document.getElementById(4).remove("<input>");
-document.getElementById(5).remove("<input>");
+document.getElementById(0).remove("<textarea>");
+document.getElementById(1).remove("<textarea>");
+document.getElementById(2).remove("<textarea>");
+document.getElementById(3).remove("<textarea>");
+document.getElementById(4).remove("<textarea>");
+document.getElementById(5).remove("<textarea>");
 
 // Removed i tags from midnight to 5AM
 document.getElementById("i0").remove("<i>");
@@ -168,17 +168,20 @@ document.getElementById("hr4").remove("<hr>");
 // document.getElementById("hr5").remove("<hr>");
 
 
-// var taskInput = document.getElementByClass("taskInput").value
+var task1Input = document.querySelector('#\\6').innerHTML;
+var saveTaskBtn = document.querySelector('#i6');
 
-var taskInput = $('.taskInput');    // Input element with text
-var storeInput = $(".storeInput");  // Button to store task 
-var task = localStorage.getItem("task");  // Retrieve previous task input from local storage
-
-    taskInput.value = task;
-    console.log(typeof task)
-
-storeInput.on("click", function() {
-    preventDefault();
-    localStorage.setItem("task", task);
-});
-
+saveTaskBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    
+    // create user object from submission
+    var task = {
+        taskText: task1Input.value.trim(),
+    }
+      localStorage.setItem("task", task);
+      
+      // get most recent submission
+      var lastUser = localStorage.getItem("task");
+      task1Input.textContent = lastUser.taskText;
+      
+    });
