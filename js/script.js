@@ -1,5 +1,5 @@
 // Added style attribute to HTML's body
-$("body").attr("style", "background-color: white;");
+$("body").attr("style", "background-color: #FDF9AD;");
 
 // Added Bootstrap classes to HTML's body
 $("body").append('<div class="headerContent header py-3 shadow-sm" style="background-color: lightblue">' + "</div>"
@@ -56,6 +56,12 @@ bodyEl.append('<main class="container">' + "</main>");
 // Created variable for container Class
 var container = $(".container");
 
+
+// **************************************
+// *  CREATED TIMES STRUCTURE & LABELS  *
+// **************************************
+
+
 // Created and appended section HTML semantic element to .container
     container.append('<section class="row midRowAM">' + "</section>");
 
@@ -71,23 +77,34 @@ var mainframeElAM = $(".mainFrameAM");
 
 // Created variables for styles that repeat through HTML structure
 var plannerFormElAM = $(".plannerForm");
-var labelStyle = ' col-1 col-md-1 mr-4 mr-md-5 mt-2" ';
-var inputStyle = ' col-8 col-md-8"';
-var inputStylePassed = "'color: black; background-color: #ffb6c1;'";
-var iconStyle = '  style="font-size: 1.25em;" class="far fa-calendar-check col-1 storeInput" id="i';
+var labelStyle = ' col-2 col-md-1 mr-3 pr-5 mt-2" ';
+var inputStyle = ' col-8 col-md-8" style="outline: none;" ';
+var iconStyle = '  style="font-size: 1.25em; background-color: transparent; border: none;" class="far fa-calendar-check col-1 storeInput text-center" id="i';
 
 // Created array that will contain values of times through the planner's structure
 var timeArray = [];
 
+
+
+
+
 // Created loop for morning time (tAM)
-for (var tAM = 0; tAM < 13; tAM++) {
+for (var tAM = 0; tAM < 12; tAM++) {
 
   //Appended morning time label, input and icons into form
-  plannerFormElAM.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tAM + "]" + '">' + [tAM] + ":00" + "</label>");
-  plannerFormElAM.append('<input class="taskInput' + inputStyle + 'id="' + [tAM] + '"' + ">" + "</input>");
+  plannerFormElAM.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tAM + "]" + '">' + [tAM] + ":00AM" + "</label>");
+  plannerFormElAM.append('<input type="text" placeholder="task" class="taskInput' + inputStyle + 'id="' + [tAM] + '"' + ">" + "</input>");
   plannerFormElAM.append('<button' + iconStyle + [tAM] + '">' + "</button>");
   timeArray.push(tAM);
   plannerFormElAM.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
+}
+
+for (var noon = 12; noon < 13; noon++) {
+  plannerFormElAM.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + noon + "]" + '">' + [noon] + ":00PM" + "</label>");
+  plannerFormElAM.append('<input type="text" placeholder="task" class="taskInput' + inputStyle + 'id="' + [noon] + '"' + ">" + "</input>");
+  plannerFormElAM.append('<button' + iconStyle + [noon] + '">' + "</button>");
+  timeArray.push(noon);
+  plannerFormElAM.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [noon] + '">');
 }
 
 
@@ -110,14 +127,18 @@ for (var tPM = 13; tPM < 22; tPM++) {
 
   //Appended morning time label, input and icons into form
   timePM = [tPM] - 12;
-  plannerFormPMEL.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tPM + "]" + '">' + [timePM] + ":00" + "</label>");
-  plannerFormPMEL.append('<input class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + ' style="border:0;">' + "</input>");
+  plannerFormPMEL.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tPM + "]" + '">' + [timePM] + ":00PM" + "</label>");
+  plannerFormPMEL.append('<input type="text" placeholder="task" class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + ' style="border:0;">' + "</input>");
   plannerFormPMEL.append('<button' + iconStyle + [tPM] + '">' + "</button>");
   plannerFormPMEL.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
   timeArray.push(tPM);
 
 
 }
+
+// *************************************
+// *  SECTION COLOR DEPENDING ON TIME  *
+// *************************************
 
 // Establishing for loop through the app to grab i values and iterate them into the changes below
 for (i = 0; i < 24; i++) {
@@ -134,6 +155,10 @@ for (i = 0; i < 24; i++) {
   if (timeArray[i] > curHour) {document.getElementById(i).setAttribute("style", "background-color: lightyellow;");
   }
 }
+
+// *************************************
+// *           REMOVED LABELS          *
+// *************************************
 
 // Deleting rows on top from midnight to 5AM
 document.getElementById("timeLabel[0]").remove("<label>");
@@ -168,7 +193,13 @@ document.getElementById("hr4").remove("<hr>");
 // document.getElementById("hr5").remove("<hr>");
 
 
-var task1Input = document.querySelector('#\\6').innerHTML;
+
+
+// *************************************
+// *       LOCAL STORAGE SECTION       *
+// *************************************
+
+var task1Input = document.querySelector('#\\6').value;
 var saveTaskBtn = document.querySelector('#i6');
 
 saveTaskBtn.addEventListener("click", function(event) {
@@ -184,4 +215,4 @@ saveTaskBtn.addEventListener("click", function(event) {
       var lastUser = localStorage.getItem("task");
       task1Input.textContent = lastUser.taskText;
       
-    });
+});
