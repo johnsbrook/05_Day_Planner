@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 // Added style attribute to HTML's body
 $("body").attr("style", "background-color: linen;");
 
@@ -158,13 +160,13 @@ for (i = 0; i < 24; i++) {
 // *       LOCAL STORAGE SECTION       *
 // *************************************
 
-var taskInput = document.querySelector('.taskInput').innerHTML;
-console.log(typeof taskInput)
-var saveTaskBtn = document.querySelector('.taskBtn');
-console.log(typeof saveTaskBtn);
 
+var taskInput = document.querySelector('.taskInput').innerHTML;
+    console.log(typeof taskInput);  
+
+var saveTaskBtn = document.querySelector('.taskBtn');
 saveTaskBtn.addEventListener("click", function(event) {
-    event.preventDefault();
+    event.preventDefault();  
     
     // create user object from submission
       localStorage.setItem("taskObj", taskInput);
@@ -236,3 +238,5 @@ document.getElementById("hr2").remove("<hr>");
 document.getElementById("hr3").remove("<hr>");
 document.getElementById("hr4").remove("<hr>");
 document.getElementById("hr5").remove("<hr>");
+
+})
