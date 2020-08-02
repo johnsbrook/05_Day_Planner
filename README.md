@@ -20,8 +20,6 @@ The location of the index.html file is at:
 
 Either, click on the link above to open on the computer or mobile device's default browser or copy and paste on the preferred browser. 
 
-
-
-BEST OF LUCK!
+EVERY DAY IS A BEAUTIFUL DAY!
 
 ![Getting Started](images/screenshot.png)
