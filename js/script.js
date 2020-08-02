@@ -52,10 +52,10 @@ bodyEl.append('<main class="container">' + "</main>");
 var container = $(".container");
 
 // Created and appended section HTML semantic element to .container
-    container.append('<section class="row midRow">' + "</section>");
+    container.append('<section class="row midRowAM">' + "</section>");
 
 // Created variable for HTML section element that will have form with AM times
-var midRow = $(".midRow");
+var midRow = $(".midRowAM");
     midRow.append('<section class="col-12 mainFrameAM">' + "</section>");
 
 // Created var with mainFrameAM class for form to frame label, input and icon ('<i>') tags and append them 
@@ -69,7 +69,7 @@ var plannerFormElAM = $(".plannerForm");
 var labelStyle = ' col-2 col-md-1 mr-4 mr-md-5 mt-2" ';
 var inputStyle = ' col-8 col-md-9"';
 var inputStylePassed = "'color: black; background-color: #ffb6c1;'";
-var iconStyle = '  style="font-size: 1.25em;" class="far fa-calendar-check col-1" id="i';
+var iconStyle = '  style="font-size: 1.25em;" class="far fa-calendar-check col-1 storeInput" id="i';
 
 // Created array that will contain values of times through the planner's structure
 var timeArray = [];
@@ -80,13 +80,14 @@ for (var tAM = 0; tAM < 13; tAM++) {
   //Appended morning time label, input and icons into form
   plannerFormElAM.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tAM + "]" + '">' + [tAM] + ":00" + "</label>");
   plannerFormElAM.append('<input class="taskInput' + inputStyle + 'id="' + [tAM] + '"' + ">" + "</input>");
-  plannerFormElAM.append("<i" + iconStyle + [tAM] + '">' + "</i>");
+  plannerFormElAM.append('<button' + iconStyle + [tAM] + '">' + "</button>");
   timeArray.push(tAM);
+  plannerFormElAM.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
 }
 
 
 // Created variable for HTML section element that will have form with PM times
-    container.append('<div class="row midRowPM">' + "</div>");
+    container.append('<section class="row midRowPM">' + "</section>");
 
 // Created variable for HTML section element that will have form with PM times
 var midRowPM = $(".midRowPM");
@@ -106,8 +107,11 @@ for (var tPM = 13; tPM < 22; tPM++) {
   timePM = [tPM] - 12;
   plannerFormPMEL.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tPM + "]" + '">' + [timePM] + ":00" + "</label>");
   plannerFormPMEL.append('<input class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + ' style="height: 100">' + "</input>");
-  plannerFormPMEL.append("<i" + iconStyle + [tPM] + '">' + "</i>" + "<br>");
+  plannerFormPMEL.append('<button' + iconStyle + [tPM] + '">' + "</button>");
+  plannerFormPMEL.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
   timeArray.push(tPM);
+
+
 }
 
 // Establishing for loop through the app to grab i values and iterate them into the changes below
@@ -125,28 +129,6 @@ for (i = 0; i < 24; i++) {
   if (timeArray[i] > curHour) {document.getElementById(i).setAttribute("style", "background-color: lightyellow;");
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Deleting rows on top from midnight to 5AM
 document.getElementById("timeLabel[0]").remove("<label>");
@@ -171,3 +153,26 @@ document.getElementById("i2").remove("<i>");
 document.getElementById("i3").remove("<i>");
 document.getElementById("i4").remove("<i>");
 document.getElementById("i5").remove("<i>");
+
+// Removed i tags from midnight to 5AM
+document.getElementById("hr0").remove("<hr>");
+document.getElementById("hr1").remove("<hr>");
+document.getElementById("hr2").remove("<hr>");
+document.getElementById("hr3").remove("<hr>");
+document.getElementById("hr4").remove("<hr>");
+// document.getElementById("hr5").remove("<hr>");
+
+
+// var taskInput = document.getElementByClass("taskInput").value
+
+var taskInput = $('.taskInput');    // Input element with text
+var storeInput = $(".storeInput");  // Button to store task 
+var task = localStorage.getItem("task");  //
+
+    taskInput.value = task;
+    console.log(typeof task)
+
+storeInput.on("click", function() {
+   localStorage.setItem("task", task);
+});
+
