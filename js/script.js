@@ -23,10 +23,15 @@ var topCol1 = $(".topCol1");
 var topCol2 = $(".topCol2");
     topCol2.append('<a target="_blank" href="https://www.booked.net/weather/new-york-18103"><img src="https://w.bookcdn.com/weather/picture/25_18103_1_1_3498db_250_2980b9_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=9699" style="border-radius: 10px; box-shadow: 0 0 5px gray;" alt="booked.net"/></a>');
 
+
+// ****************************
+// * HEADER ENDS HERE         *
+// ****************************
+
 // Created todayDate to enclose Date() along with date's structure (day string, month string, day number and year number)
 var todayDate = new Date(),
-    weekdays = new Array( "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
-    months = new Array( "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+    weekdays = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+    months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 
 
     dayOfWeek = weekdays[todayDate.getDay()];
@@ -66,8 +71,8 @@ var mainframeElAM = $(".mainFrameAM");
 
 // Created variables for styles that repeat through HTML structure
 var plannerFormElAM = $(".plannerForm");
-var labelStyle = ' col-2 col-md-1 mr-4 mr-md-5 mt-2" ';
-var inputStyle = ' col-8 col-md-9"';
+var labelStyle = ' col-1 col-md-1 mr-4 mr-md-5 mt-2" ';
+var inputStyle = ' col-8 col-md-8"';
 var inputStylePassed = "'color: black; background-color: #ffb6c1;'";
 var iconStyle = '  style="font-size: 1.25em;" class="far fa-calendar-check col-1 storeInput" id="i';
 
@@ -79,7 +84,7 @@ for (var tAM = 0; tAM < 13; tAM++) {
 
   //Appended morning time label, input and icons into form
   plannerFormElAM.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tAM + "]" + '">' + [tAM] + ":00" + "</label>");
-  plannerFormElAM.append('<input class="taskInput' + inputStyle + 'id="' + [tAM] + '"' + ">" + "</input>");
+  plannerFormElAM.append('<textarea class="taskInput' + inputStyle + 'id="' + [tAM] + '"' + ">" + "</textarea>");
   plannerFormElAM.append('<button' + iconStyle + [tAM] + '">' + "</button>");
   timeArray.push(tAM);
   plannerFormElAM.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
@@ -106,7 +111,7 @@ for (var tPM = 13; tPM < 22; tPM++) {
   //Appended morning time label, input and icons into form
   timePM = [tPM] - 12;
   plannerFormPMEL.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tPM + "]" + '">' + [timePM] + ":00" + "</label>");
-  plannerFormPMEL.append('<input class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + ' style="height: 100">' + "</input>");
+  plannerFormPMEL.append('<textarea class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + ' style="border:0;">' + "</textarea>");
   plannerFormPMEL.append('<button' + iconStyle + [tPM] + '">' + "</button>");
   plannerFormPMEL.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
   timeArray.push(tPM);
@@ -167,12 +172,13 @@ document.getElementById("hr4").remove("<hr>");
 
 var taskInput = $('.taskInput');    // Input element with text
 var storeInput = $(".storeInput");  // Button to store task 
-var task = localStorage.getItem("task");  //
+var task = localStorage.getItem("task");  // Retrieve previous task input from local storage
 
     taskInput.value = task;
     console.log(typeof task)
 
 storeInput.on("click", function() {
-   localStorage.setItem("task", task);
+    preventDefault();
+    localStorage.setItem("task", task);
 });
 
