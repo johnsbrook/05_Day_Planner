@@ -79,7 +79,7 @@ var mainframeElAM = $(".mainFrameAM");
 var plannerFormElAM = $(".plannerForm");
 var labelStyle = ' col-2 col-md-1 mr-3 pr-5 mt-2" ';
 var inputStyle = ' col-8 col-md-8" ';
-var iconStyle = '  style="font-size: 1.25em; background-color: transparent; border: none;" class="far fa-calendar-check col-1 storeInput text-center" id="i';
+var buttonStyle = '  style="font-size: 1.25em; background-color: transparent; border: none;" class="far fa-calendar-check col-1 taskBtn text-center" id="i';
 
 // Created array that will contain values of times through the planner's structure
 var timeArray = [];
@@ -90,21 +90,20 @@ for (var tAM = 0; tAM < 12; tAM++) {
   //Appended morning time label, input and icons into form
   plannerFormElAM.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tAM + "]" + '">' + [tAM] + ":00AM" + "</label>");
   plannerFormElAM.append('<input type="text" placeholder="task" class="taskInput' + inputStyle + 'id="' + [tAM] + '"' + ">" + "</input>");
-  plannerFormElAM.append('<button' + iconStyle + [tAM] + '">' + "</button>");
+  plannerFormElAM.append('<button' + buttonStyle + [tAM] + '">' + "</button>");
   timeArray.push(tAM);
   plannerFormElAM.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
 }
 
-// 
-// for (var noon = 12; noon < 13; noon++) {
+// Added noon label (didn't include into PM times as it will set 0:00 PM)
   plannerFormElAM.append('<label for="text" class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + 12 + "]" + '">' + [12] + ":00PM" + "</label>");
   plannerFormElAM.append('<input type="text" placeholder="task" class="taskInput' + inputStyle + 'id="' + [12] + '"' + ">" + "</input>");
-  plannerFormElAM.append('<button' + iconStyle + [12] + '">' + "</button>");
+  plannerFormElAM.append('<button' + buttonStyle + [12] + '">' + "</button>");
   timeArray.push(12);
   plannerFormElAM.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [12] + '">');
-// }
 
-// Created variable for HTML section element that will have form with PM times
+
+// Created section for HTML section element that will have form with PM times
     container.append('<section class="row midRowPM">' + "</section>");
 
 // Created variable for HTML section element that will have form with PM times
@@ -125,7 +124,7 @@ for (var tPM = 13; tPM < 22; tPM++) {
   timePM = [tPM] - 12;
   plannerFormPMEL.append('<label for="text" class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + tPM + "]" + '">' + [timePM] + ":00PM" + "</label>");
   plannerFormPMEL.append('<input type="text" placeholder="task" class="taskInput' + inputStyle + 'id="' + [tPM] + '"' + ' style="border:0;">' + "</input>");
-  plannerFormPMEL.append('<button' + iconStyle + [tPM] + '">' + "</button>");
+  plannerFormPMEL.append('<button' + buttonStyle + [tPM] + '">' + "</button>");
   plannerFormPMEL.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
   timeArray.push(tPM);
 
@@ -152,6 +151,56 @@ for (i = 0; i < 24; i++) {
   }
 }
 
+
+
+
+// *************************************
+// *       LOCAL STORAGE SECTION       *
+// *************************************
+
+var taskInput = document.querySelector('.taskInput').innerHTML;
+console.log(typeof taskInput)
+var saveTaskBtn = document.querySelector('.taskBtn');
+console.log(typeof saveTaskBtn);
+
+saveTaskBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    
+    // create user object from submission
+      localStorage.setItem("taskObj", taskInput);
+      
+      // get most recent submission
+    var lastUser = localStorage.getItem("taskObj");
+        task1Input = lastUser.taskText;   
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // *************************************
 // *           REMOVED LABELS          *
 // *************************************
@@ -165,20 +214,20 @@ document.getElementById("timeLabel[4]").remove("<label>");
 document.getElementById("timeLabel[5]").remove("<label>");
 
 // Removed input tags from midnight to 5AM 
-document.getElementById(0).remove("<textarea>");
-document.getElementById(1).remove("<textarea>");
-document.getElementById(2).remove("<textarea>");
-document.getElementById(3).remove("<textarea>");
-document.getElementById(4).remove("<textarea>");
-document.getElementById(5).remove("<textarea>");
+document.getElementById(0).remove("<input>");
+document.getElementById(1).remove("<input>");
+document.getElementById(2).remove("<input>");
+document.getElementById(3).remove("<input>");
+document.getElementById(4).remove("<input>");
+document.getElementById(5).remove("<input>");
 
 // Removed i tags from midnight to 5AM
-document.getElementById("i0").remove("<i>");
-document.getElementById("i1").remove("<i>");
-document.getElementById("i2").remove("<i>");
-document.getElementById("i3").remove("<i>");
-document.getElementById("i4").remove("<i>");
-document.getElementById("i5").remove("<i>");
+document.getElementById("i0").remove("<button>");
+document.getElementById("i1").remove("<button>");
+document.getElementById("i2").remove("<button>");
+document.getElementById("i3").remove("<button>");
+document.getElementById("i4").remove("<button>");
+document.getElementById("i5").remove("<button>");
 
 // Removed i tags from midnight to 5AM
 document.getElementById("hr0").remove("<hr>");
@@ -186,30 +235,4 @@ document.getElementById("hr1").remove("<hr>");
 document.getElementById("hr2").remove("<hr>");
 document.getElementById("hr3").remove("<hr>");
 document.getElementById("hr4").remove("<hr>");
-// document.getElementById("hr5").remove("<hr>");
-
-
-
-
-// *************************************
-// *       LOCAL STORAGE SECTION       *
-// *************************************
-
-var task1Input = document.querySelector('#\\6');
-var saveTaskBtn = document.querySelector('#i6');
-console.log(typeof task1Input);
-
-saveTaskBtn.addEventListener("click", function(event) {
-    event.preventDefault();
-    
-    // create user object from submission
-    var task = {
-        taskText: task1Input,
-    }
-      localStorage.setItem("task", task);
-      
-      // get most recent submission
-      var lastUser = localStorage.getItem("task");
-      task1Input = lastUser.taskText;
-      
-});
+document.getElementById("hr5").remove("<hr>");
