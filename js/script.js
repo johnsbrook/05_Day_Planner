@@ -51,7 +51,7 @@ var today = "Today's date: " + dayOfWeek + ", " + curMonth + " " + dayOfMonth + 
 var bodyEl = $("body");
 
 // Appending Container with .container class to body element
-bodyEl.append('<main class="container">' + "</main>");
+    bodyEl.append('<main class="container">' + "</main>");
 
 // Created variable for container Class
 var container = $(".container");
@@ -84,10 +84,6 @@ var iconStyle = '  style="font-size: 1.25em; background-color: transparent; bord
 // Created array that will contain values of times through the planner's structure
 var timeArray = [];
 
-
-
-
-
 // Created loop for morning time (tAM)
 for (var tAM = 0; tAM < 12; tAM++) {
 
@@ -99,14 +95,14 @@ for (var tAM = 0; tAM < 12; tAM++) {
   plannerFormElAM.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [tAM] + '">');
 }
 
-for (var noon = 12; noon < 13; noon++) {
-  plannerFormElAM.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + noon + "]" + '">' + [noon] + ":00PM" + "</label>");
-  plannerFormElAM.append('<input type="text" placeholder="task" class="taskInput' + inputStyle + 'id="' + [noon] + '"' + ">" + "</input>");
-  plannerFormElAM.append('<button' + iconStyle + [noon] + '">' + "</button>");
-  timeArray.push(noon);
-  plannerFormElAM.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [noon] + '">');
-}
-
+// 
+// for (var noon = 12; noon < 13; noon++) {
+  plannerFormElAM.append('<label class="timeLabel' + labelStyle + 'id="timeLabel' + "[" + 12 + "]" + '">' + [12] + ":00PM" + "</label>");
+  plannerFormElAM.append('<input type="text" placeholder="task" class="taskInput' + inputStyle + 'id="' + [12] + '"' + ">" + "</input>");
+  plannerFormElAM.append('<button' + iconStyle + [12] + '">' + "</button>");
+  timeArray.push(12);
+  plannerFormElAM.append('<hr style="border-top: 1px dashed lavender;" id="hr' + [12] + '">');
+// }
 
 // Created variable for HTML section element that will have form with PM times
     container.append('<section class="row midRowPM">' + "</section>");
@@ -199,7 +195,7 @@ document.getElementById("hr4").remove("<hr>");
 // *       LOCAL STORAGE SECTION       *
 // *************************************
 
-var task1Input = document.querySelector('#\\6').value;
+var task1Input = document.querySelector('#\\6').str;
 var saveTaskBtn = document.querySelector('#i6');
 
 saveTaskBtn.addEventListener("click", function(event) {
@@ -207,9 +203,9 @@ saveTaskBtn.addEventListener("click", function(event) {
     
     // create user object from submission
     var task = {
-        taskText: task1Input.value.trim(),
+        taskText: task1Input,
     }
-      localStorage.setItem("task", task);
+      localStorage.setItem("task", JSON.stringify(task));
       
       // get most recent submission
       var lastUser = localStorage.getItem("task");
