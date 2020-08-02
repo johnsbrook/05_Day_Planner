@@ -1,5 +1,5 @@
 // Added style attribute to HTML's body
-$("body").attr("style", "background-color: #FDF9AD;");
+$("body").attr("style", "background-color: linen;");
 
 // Added Bootstrap classes to HTML's body
 $("body").append('<div class="headerContent header py-3 shadow-sm" style="background-color: lightblue">' + "</div>"
@@ -73,12 +73,12 @@ var midRow = $(".midRowAM");
 var mainframeElAM = $(".mainFrameAM");
 
 // Created form for AM times
-    mainframeElAM.append('<form class="plannerForm">' + "</form>");
+    mainframeElAM.append('<form class="plannerForm text-center">' + "</form>");
 
 // Created variables for styles that repeat through HTML structure
 var plannerFormElAM = $(".plannerForm");
 var labelStyle = ' col-2 col-md-1 mr-3 pr-5 mt-2" ';
-var inputStyle = ' col-8 col-md-8" style="outline: none;" ';
+var inputStyle = ' col-8 col-md-8" ';
 var iconStyle = '  style="font-size: 1.25em; background-color: transparent; border: none;" class="far fa-calendar-check col-1 storeInput text-center" id="i';
 
 // Created array that will contain values of times through the planner's structure
@@ -113,7 +113,7 @@ var midRowPM = $(".midRowPM");
 
 // Created var with mainFramePM class for form to frame label, input and icon ('<i>') tags and append them 
 var mainFramePMEl = $(".mainFramePM");
-    mainFramePMEl.append('<form class="plannerFormPM">' + "</form>");
+    mainFramePMEl.append('<form class="plannerFormPM text-center">' + "</form>");
 
 // Created var with panner form's structure for PM times  
 var plannerFormPMEL = $(".plannerFormPM");
