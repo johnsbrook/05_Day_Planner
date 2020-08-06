@@ -71,7 +71,7 @@ $('#hr-11 .taskInput').val(localStorage.getItem('hr-11'));
 $('#hr-12 .taskInput').val(localStorage.getItem('hr-12'));
 $('#hr-13 .taskInput').val(localStorage.getItem('hr-13'));
 $('#hr-14 .taskInput').val(localStorage.getItem('hr-14'));
-$('#hr-15 .taskInput').val(localStorage.getItem('hr-8'));
+$('#hr-15 .taskInput').val(localStorage.getItem('hr-15'));
 $('#hr-16 .taskInput').val(localStorage.getItem('hr-16'));
 $('#hr-17 .taskInput').val(localStorage.getItem('hr-17'));
 $('#hr-18 .taskInput').val(localStorage.getItem('hr-18'));
